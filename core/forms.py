@@ -1,4 +1,5 @@
 from django import forms
+
 from .models import ContactUs, WorkWith
 
 
@@ -6,16 +7,16 @@ class ContactUsForm(forms.ModelForm):
     class Meta:
         model = ContactUs
         fields = (
-            'email',
-            'phone_number',
-            'title',
-            'text',
+            "email",
+            "phone_number",
+            "title",
+            "text",
         )
         labels = {
-            'email': 'ایمیل',
-            'phone_number': 'شماره تماس',
-            'title': 'موضوع',
-            'text': 'متن',
+            "email": "ایمیل",
+            "phone_number": "شماره تماس",
+            "title": "موضوع",
+            "text": "متن",
         }
 
         widgets = {
@@ -45,7 +46,8 @@ class ContactUsForm(forms.ModelForm):
                     "class": "form-control",
                     "placeholder": "ایمیل",
                 }
-            )}
+            ),
+        }
 
 
 class WorkWithForm(ContactUsForm):

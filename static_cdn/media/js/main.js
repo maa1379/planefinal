@@ -1,4 +1,3 @@
-
 window.scrollBy(0, 300);
 
 (function ($) {
@@ -68,18 +67,18 @@ $(document).ready(function () {
     })
     $("#returnDateHotel").persianDatepicker({
         altField: '#returnDateHotel',
-        altFormat: "YYYY/YYYY/MM/DD",
+        altFormat: "YYYY/MM/DD",
         observer: false,
-        format: 'YYYY/YYYY/MM/DD',
+        format: 'YYYY/MM/DD',
         initialValue: false,
         initialValueType: 'persian',
         autoClose: true,
     });
     $("#goDateHotel").persianDatepicker({
         altField: '#goDateHotel',
-        altFormat: "YYYY/YYYY/MM/DD",
+        altFormat: "YYYY/MM/DD",
         observer: false,
-        format: 'YYYY/YYYY/MM/DD',
+        format: 'YYYY/MM/DD',
         initialValue: false,
         initialValueType: 'persian',
         autoClose: true,
@@ -188,11 +187,19 @@ if (document.getElementById('addNewPassenger')) {
         console.log(document.getElementsByClassName('passenger_wrapper')[document.getElementsByClassName('passenger_wrapper').length - 1].reset())
         setDate();
     }
+
+
     document.getElementById('finalSubmit').onclick = async function () {
         let forms = document.getElementsByClassName('passenger_wrapper');
         let data = $(forms).serialize();
         data = data + "&mobile=" + document.getElementById('mobile').value;
         data = data + "&email=" + document.getElementById('email').value;
+        data = data + "&source=" + document.getElementById('source').value;
+        data = data + "&airline_name=" + document.getElementById('airline_name').value;
+        data = data + "&target=" + document.getElementById('target').value;
+        data = data + "&fly_code=" + document.getElementById('fly_code').value;
+        data = data + "&fly_class=" + document.getElementById('fly_class').value;
+        // data = data + "&date=" + document.getElementById('date').value;
         const form = document.createElement('form');
         data = data.split("&");
         data.forEach((value) => {
@@ -210,21 +217,38 @@ if (document.getElementById('addNewPassenger')) {
         form.appendChild(input);
         form.setAttribute('method', 'post');
         form.setAttribute('style', 'display: none;');
-        form.setAttribute('action', document.getElementById('finalSubmit').attributes['data-url'].value);
+        let code = document.myform['code1'].value;
+        let name1 = document.myform['name1'].value;
+        let name2 = document.myform['name2'].value;
+        let family1 = document.myform['family1'].value;
+        let family2 = document.myform['family2'].value;
+        if (code.length == 0 || code == "" || code.length < 10) {
+            alert("لطفا کد ملی را وارد کنید");
+            return;
+        }
+        if(name1.length == 0 || name1 == "" || name2.length == 0 || name2 == ""){
+            alert("لطفا نام خود را وارد کنید");
+            return;
+        }
+        if(family1.length == 0 || family1 == "" || family2.length == 0 || family2 == ""){
+            alert("لطفا نام خانوادگی خود را وارد کنید");
+            return;
+        }
+            form.setAttribute('action', document.getElementById('finalSubmit').attributes['data-url'].value);
+            document.getElementsByTagName('body')[0].appendChild(form);
+            console.log("sdfdsfsdfsdf")
+            console.log(form.submit())
+            form.submit()
         // let result = await fetch('', {
         //     method: 'POST',
         //     data: data,
         // });
 
-        document.getElementsByTagName('body')[0].appendChild(form);
-
-
-        console.log("sdfdsfsdfsdf");
-        console.log(form.submit());
-        form.submit()
 
     }
 }
+
+
 if (document.getElementsByClassName('side-tab').length > 0) {
     setTimeout(() => {
         console.log($(".side-tab a:nth-child(1)").click())
@@ -396,75 +420,4 @@ travelClicks.addEventListener('click', function (e) {
 // window.scrollBy(0, 400);
 
 
-$(".my-tabs span").on('click', function () {
-    let that = $(this);
-    $(".my-tabs span").each(function () {
-        $(this).removeClass('active');
-        let target = $(this).data('target');
-        $(`#${target}`).removeClass('show')
-    })
-    $(that).addClass('active')
-    let target = $(that).data('target');
-    $(`#${target}`).addClass('show')
-})
 
-setTimeout(() => {
-    $(".my-tabs span:first-child").click()
-}, 100)
-if (document.getElementById('addDoc')) {
-    document.getElementById('addDoc').onclick = function () {
-        let content = document.getElementsByClassName('document_wrapper')[document.getElementsByClassName('document_wrapper').length - 1].cloneNode(true);
-        document.getElementById('document').appendChild(content);
-        console.log(document.getElementsByClassName('document_wrapper')[document.getElementsByClassName('document_wrapper').length - 1].reset())
-        console.log('fgfdgdfg')
-    }
-    document.getElementById('finalSubmit').onclick = async function () {
-        let forms = document.getElementsByClassName('document_wrapper');
-        let data = $(forms).serialize();
-        // data = data + "&mobile=" + document.getElementById('mobile').value;
-        // data = data + "&email=" + document.getElementById('email').value;
-        const form = document.createElement('form');
-        data = data.split("&");
-        data.forEach((value) => {
-            let input = document.createElement('input');
-            input.setAttribute('type', 'hidden');
-            let split = value.split('=');
-            input.setAttribute('name', split[0].replace('%5B%5D', ''));
-            input.value = split[1];
-            form.appendChild(input);
-        });
-        let input = document.createElement('input');
-        input.setAttribute('type', 'hidden');
-        input.setAttribute('name', 'csrfmiddlewaretoken');
-        input.value = document.getElementsByName('csrfmiddlewaretoken')[0].value;
-        form.appendChild(input);
-        form.setAttribute('method', 'post');
-        form.setAttribute('style', 'display: none;');
-        form.setAttribute('action', document.getElementById('finalSubmit').attributes['data-url'].value);
-        // let result = await fetch('', {
-        //     method: 'POST',
-        //     data: data,
-        // });
-
-        document.getElementsByTagName('body')[0].appendChild(form);
-
-
-        console.log("sdfdsfsdfsdf");
-        console.log(form.submit());
-        form.submit()
-
-        form.addEventListener('click', function (e) {
-            e.preventDefault()
-            console.log('sdfsdfdsf')
-            console.log(e)
-        })
-
-
-    }
-}
-if (document.getElementsByClassName('side-tab').length > 0) {
-    setTimeout(() => {
-        console.log($(".side-tab a:nth-child(1)").click())
-    }, 1)
-
-}

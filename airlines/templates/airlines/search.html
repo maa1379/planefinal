@@ -8,9 +8,124 @@
     <link rel="stylesheet" href="{% static 'css/animate.css' %}">
     <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/persian-datepicker.min.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet"/>
     <title>خرید بلیط</title>
 {% endblock style %}
 {% block content %}
+
+
+    <section class="service-type my-3">
+        <div class="fly-form" style="margin: auto; width: 90%;">
+            <form id="fly-area" class="select-area fly-area" method="get" action='{% url "airlines:fly_search" %}'>
+
+            <div class="my-4 d-flex justify-content-start">
+                <div class="form-check rounded-3 mx-2 p-1">
+                    <label style="color:#A281B0;" class="form-check-label me-1" for="flexRadioDefault1">
+                        پرواز یک طرفه
+                    </label>
+                    <input class="form-check-input mx-2" type="radio" name="flexRadioDefault"
+                           id="flexRadioDefault1">
+                </div>
+                <div class="form-check rounded-3 mx-2 p-1">
+                    <label style="color:#A281B0;" class="form-check-label me-1" for="flexRadioDefault2">
+                        پرواز رفت و برگشت
+                    </label>
+                    <input class="form-check-input mx-2" type="radio" name="flexRadioDefault"
+                           id="flexRadioDefault2">
+                </div>
+            </div>
+            <div class="d-flex justify-content-center align-items-center inputs-div" style="height: 48px;">
+                <div class="input-group rounded-3 mx-1">
+
+                    <select required type="text" name="source" class="form-control select2"
+                            placeholder="شهر مبدا"
+                            id="travelSrc">
+                        <option selected>شهر مبدا</option>
+                    </select>
+
+                </div>
+                <div class="input-group rounded-3 mx-1">
+
+                    <select required type="text" name="target" class="form-control select2"
+                            placeholder="شهر مقصد"
+                            id="travelGoal">
+                        <option selected>شهر مقصد</option>
+                    </select>
+
+                </div>
+                <div id="container-type-travel" class="input-group input-group-date rounded-3 mx-1"
+                     type-travel="2">
+                            <span class="input-group-text 1" id="goDateSpan" type-travel="1"><svg xmlns="http://www.w3.org/2000/svg"
+                                                                                width="16"
+                                                                                height="16" fill="currentColor"
+                                                                                class="bi bi-calendar2-week-fill"
+                                                                                style="color: #A27EAE; margin-top:5px;"
+                                                                                viewBox="0 0 16 16"><path
+                                    d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zm9.954 3H2.545c-.3 0-.545.224-.545.5v1c0 .276.244.5.545.5h10.91c.3 0 .545-.224.545-.5v-1c0-.276-.244-.5-.546-.5zM8.5 7a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1zm3 0a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1zM3 10.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5zm3.5-.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1z"/></svg></span>
+                    <input required type="text" name="date" class="form-control datePicker"
+                           placeholder="تاریخ رفت" id="goDate" type-travel="1">
+                    <span class="input-group-text" id="returnDateSpan" type-travel="2"><svg xmlns="http://www.w3.org/2000/svg"
+                                                                        width="16"
+                                                                        height="16" fill="currentColor"
+                                                                        class="bi bi-calendar2-week-fill"
+                                                                        style="color: #A27EAE;margin-top:5px;  "
+                                                                        viewBox="0 0 16 16"><path
+                            d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zm9.954 3H2.545c-.3 0-.545.224-.545.5v1c0 .276.244.5.545.5h10.91c.3 0 .545-.224.545-.5v-1c0-.276-.244-.5-.546-.5zM8.5 7a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1zm3 0a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1zM3 10.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5zm3.5-.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1z"/></svg></span>
+                    <input required type="text" name="date2" class="form-control datePicker"
+                           placeholder="تاریخ برگشت"
+                           id="returnDate" type-travel="2">
+                </div>
+                <div class="input-group rounded-3 mx-1">
+                            <span class="input-group-text" title="12 سال به بالا"><svg
+                                    xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    style="color: #A27EAE;" class="bi bi-people-fill" viewBox="0 0 16 16"><path
+                                    d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/><path
+                                    fill-rule="evenodd"
+                                    d="M5.216 14A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216z"/><path
+                                    d="M4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"/></svg></span>
+                    <input required type="text" name="adult" class="form-control" title="12 سال به بالا"
+                           value="1"
+                           placeholder="بزرگسال"
+                           id="adultsNum">
+                    <span class="input-group-text" title="2 تا 12 سال"><svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="16" height="16"
+                            fill="currentColor"
+                            style="color: #A27EAE;"
+                            class="bi bi-people-fill"
+                            viewBox="0 0 16 16"><path
+                            d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/><path
+                            fill-rule="evenodd"
+                            d="M5.216 14A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216z"/><path
+                            d="M4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"/></svg></span>
+                    <input required type="text" name="child" class="form-control" title="2 تا 12 سال"
+                           value="0"
+                           placeholder="کودک"
+                           id="childNum">
+                    <span class="input-group-text" name="infant" title="زیر 2 سال"><svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="16" height="16"
+                            fill="currentColor"
+                            style="color: #A27EAE;"
+                            class="bi bi-people-fill"
+                            viewBox="0 0 16 16"><path
+                            d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/><path
+                            fill-rule="evenodd"
+                            d="M5.216 14A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216z"/><path
+                            d="M4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"/></svg></span>
+                    <input required type="text" class="form-control" title="زیر 2 سال" placeholder="نوزاد"
+                           value="0"
+                           id="infantNum">
+                </div>
+                <button type="button" id="fly-area-submit"
+                        class="btn btnSearch d-flex align-items-center justify-content-center">جستجو
+                </button>
+            </div>
+            </form>
+        </div>
+    </section>
+
     <main class="d-flex py-3 justify-content-between align-items-start">
         <section class="results-filter me-2 col-3 rounded-3 p-3" style="height: fit-content;">
             <div class="d-flex">
@@ -61,7 +176,7 @@
                     {% for airline in  airline_list %}
                         <div class="form-check rounded-3 me-2 p-1 ps-0">
                             <label style="color:#7e7d80;" class="form-check-label me-1" for="iranair">
-                                <img src="{{ airline.logo.url }}" class="me-1" height="40PX" width="100px" alt="">
+                                <img src="{{ airline.logo.url }}" class="me-1" height="60PX" width="60px" alt="">
                                 {{ airline.name }}
                             </label>
                             <input class="form-check-input me-2 ms-1 airline_checkbox" type="checkbox" name="airlines[]"
@@ -217,7 +332,7 @@
                     <div class="col-9 d-flex flex-column">
                         <div class="d-flex justify-content-start align-items-center">
                             <div class="d-flex ticket-img mx-5 flex-column text-center align-items-center justify-content-center">
-                                <img src="{{ trip.image }}" height="40px" width="100px" alt="">
+                                <img src="{{ trip.image }}" height="120px" width="120px" alt="">
                                 <div class="mt-2" style="font-size: 12px;">{{trip.FlightNo}}-{{ trip.airline_name }}</div>
                             </div>
                             <div class="d-flex flex-column justify-content-center align-items-start">
@@ -249,13 +364,13 @@
                         </div>
                         <div>
                             <a data-bs-toggle="modal" data-bs-target="#extraditionRules" class="mx-3" href=""
-                               style="font-size: 12px;">قوانین استرداد</a>
+                               style="font-size: 12px;">{{trip.persian_date}}قوانین استرداد</a>
                         </div>
                     </div>
                     <div class="col-3 px-4 d-flex flex-column align-items-center justify-content-center ticket-price"
                          style="height: inherit; border-right: 1px dotted #9c33d1;">
                         <div class="d-flex mb-2 text-primary">
-                            <h4 class="fw-bold">{{ trip.AdultTotalPrices | intcomma }}</h4>
+                            <h4 class="fw-bold">{{ trip.price | intcomma }}</h4>
                             <small class="ms-2 mt-1">ریال</small>
                         </div>
                         <form action="{% url "passengers:passenger" %}" style="display: none">
@@ -264,17 +379,16 @@
                             <input type="hidden" name="Destination" value="{{ trip.Destination }}">
                             <input type="hidden" name="DepartureTime" value="{{ trip.DepartureTime }}">
                             <input type="hidden" name="Origin" value="{{ trip.Origin }}">
-                            <input type="hidden" name="Origin" value="{{ trip.Origin }}">
                             <input type="hidden" name="airline_name" value="{{ trip.airline_name }}">
                             <input type="hidden" name="persian_date" value="{{ trip.persian_date }}">
                             <input type="hidden" name="destination_city_name" value="{{ trip.destination_city_name }}">
                             <input type="hidden" name="origin_city_name" value="{{ trip.origin_city_name }}">
+                            <input type="hidden" name="fly_code_number" value="{{ trip.OperatingFlightNo }}">
+                            <input type="hidden" name="fly_class_code" value="{{ trip.fly_class }}">
                             <button type="submit" id="formSubmit_{{ forloop.counter }}"></button>
                         </form>
                         <button type="submit"   onclick="parsaSubmit({{ forloop.counter }})" style="border-radius: 7px;"
-                                class="btn w-100  {%  if trip.class == 'ظرفیت ندارد' %}btn-secondary
-
- disabled{% else %} btn-danger {% endif %}">
+                                class="btn w-100  {%  if trip.class == 'ظرفیت ندارد' %}btn-secondary  disabled{%  elif trip.class == 'کالس کنسل شده است و موجود نمی باشد.' %}btn-secondary  disabled{% else %} btn-danger {% endif %}">
                             خرید بلیط
                         </button>
                         <small class="mt-2 text-danger">{{ trip.class }}</small>

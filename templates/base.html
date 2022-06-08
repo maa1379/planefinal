@@ -11,7 +11,12 @@
 </head>
 <body>
 
-<style>window.scrollBy(0, 400);</style>
+<style>
+
+    window.scrollBy(0, 0);
+    window.scrollBy(0, 400);
+
+</style>
 
 <header>
     <div class="head-address py-1">
@@ -162,6 +167,15 @@
         <span class="fog"></span>
     </div>
 </header>
+<div class="alert alert-success">
+
+</div>
+{% if messages %}
+    {% for message in messages %}
+    <p class="{{ message.tags }}">{{ message }}</p>
+    {% endfor %}
+{% endif %}
+
 {% block content %}
 {% endblock content %}
 <footer>
@@ -220,6 +234,7 @@
 <script src="{% static 'js/persian-datepicker.min.js' %}"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script src="{% static 'js/main.js' %}"></script>
+<script src="{% static 'js/upload.js' %}"></script>
 
 
 

@@ -180,7 +180,7 @@ setTimeout(() => {
 }, 100)
 if (document.getElementById('addNewPassenger')) {
     document.getElementById('addNewPassenger').onclick = function () {
-        let content = document.getElementsByClassName('passenger_wrapper')[document.getElementsByClassName('passenger_wrapper').length - 1].cloneNode(true);
+        let content = document.getElementsByClassName('passenger_wrapper ')[document.getElementsByClassName('passenger_wrapper').length - 1].cloneNode(true);
         document.getElementById('passengers').appendChild(content);
         console.log(document.getElementsByClassName('passenger_wrapper')[document.getElementsByClassName('passenger_wrapper').length - 1].reset())
         setDate();
@@ -188,8 +188,12 @@ if (document.getElementById('addNewPassenger')) {
     document.getElementById('finalSubmit').onclick = async function () {
         let forms = document.getElementsByClassName('passenger_wrapper');
         let data = $(forms).serialize();
-        data = data + "&mobile=" + document.getElementById('mobile').value;
+             data = data + "&mobile=" + document.getElementById('mobile').value;
         data = data + "&email=" + document.getElementById('email').value;
+        data = data + "&source=" + document.getElementById('source').value;
+        data = data + "&airline_name=" + document.getElementById('airline_name').value;
+        data = data + "&target=" + document.getElementById('target').value;
+        data = data + "&date=" + document.getElementById('date').value;
         const form = document.createElement('form');
         data = data.split("&");
         data.forEach((value) => {
@@ -205,8 +209,8 @@ if (document.getElementById('addNewPassenger')) {
         input.setAttribute('name', 'csrfmiddlewaretoken');
         input.value = document.getElementsByName('csrfmiddlewaretoken')[0].value;
         form.appendChild(input);
-        form.setAttribute('method', 'post');
-        form.setAttribute('style', 'display: none;');
+        form.setAttribute('method', 'get');
+        form.setAttribute('style', 'display: block;');
         form.setAttribute('action', document.getElementById('finalSubmit').attributes['data-url'].value);
         // let result = await fetch('', {
         //     method: 'POST',
@@ -219,7 +223,6 @@ if (document.getElementById('addNewPassenger')) {
         console.log("sdfdsfsdfsdf");
         console.log(form.submit());
         form.submit()
-
     }
 }
 if (document.getElementsByClassName('side-tab').length > 0) {
@@ -227,6 +230,7 @@ if (document.getElementsByClassName('side-tab').length > 0) {
         console.log($(".side-tab a:nth-child(1)").click())
     }, 1)
 }
+
 if (document.getElementById('travelSrc')) {
     setTimeout(() => {
         $.ajax({

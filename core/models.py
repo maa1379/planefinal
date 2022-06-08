@@ -19,23 +19,23 @@ class SingletonModel(models.Model):
 
 class SiteSetting(SingletonModel):
     title = models.CharField(max_length=125, verbose_name="عنوان سایت")
-    logo = models.ImageField(upload_to='', verbose_name="لوگو")
+    logo = models.ImageField(upload_to="", verbose_name="لوگو")
     address = models.CharField(max_length=500, verbose_name="آدرس")
     phone_number = models.CharField(max_length=11, null=True, blank=True)
     instagram = models.URLField(verbose_name="اینستاگرام", blank=True)
     linkedin = models.URLField(verbose_name="لینکدین", blank=True)
     twitter = models.URLField(verbose_name="واتساپ", blank=True)
-    facebook = models.URLField(verbose_name='فیس بوک', blank=True)
+    facebook = models.URLField(verbose_name="فیس بوک", blank=True)
     copyrights = models.CharField(max_length=500, verbose_name="کپی رایت")
-    lang = models.FloatField(blank=True, verbose_name='طول جغرافیایی')
-    lat = models.FloatField(blank=True, verbose_name='عرض جغرافیایی')
+    lang = models.FloatField(blank=True, verbose_name="طول جغرافیایی")
+    lat = models.FloatField(blank=True, verbose_name="عرض جغرافیایی")
 
     def __str__(self):
         return self.title
 
     class Meta:
-        verbose_name = 'تنظیمات سایت'
-        verbose_name_plural = 'تنظیمات سایت'
+        verbose_name = "تنظیمات سایت"
+        verbose_name_plural = "تنظیمات سایت"
 
 
 class AboutUs(SingletonModel):
@@ -43,8 +43,8 @@ class AboutUs(SingletonModel):
     description = models.TextField()
 
     class Meta:
-        verbose_name = 'درباره ما'
-        verbose_name_plural = 'درباره ما'
+        verbose_name = "درباره ما"
+        verbose_name_plural = "درباره ما"
 
 
 class BaseCore(models.Model):
@@ -59,38 +59,34 @@ class BaseCore(models.Model):
 
 
 class ContactUs(BaseCore):
-    TITLE = (
-        ('تستی', 'تستی'),
-    )
+    TITLE = (("تستی", "تستی"),)
     title = models.CharField(max_length=15)
 
     class Meta:
-        verbose_name = 'تماس باما'
-        verbose_name_plural = 'تماس با ما'
+        verbose_name = "تماس باما"
+        verbose_name_plural = "تماس با ما"
 
 
 class WorkWith(BaseCore):
-    TITLE = (
-        ('تستی', 'تستی'),
-    )
+    TITLE = (("تستی", "تستی"),)
     title = models.CharField(max_length=15)
 
     class Meta:
-        verbose_name = 'همکاری با ما'
-        verbose_name_plural = 'همکاری با ما'
+        verbose_name = "همکاری با ما"
+        verbose_name_plural = "همکاری با ما"
 
 
 class Service(models.Model):
     title = models.CharField(max_length=125)
-    image = models.ImageField(upload_to='')
+    image = models.ImageField(upload_to="")
     description = models.TextField()
 
     def __str__(self):
         return self.title
 
     class Meta:
-        verbose_name = 'حدمت'
-        verbose_name_plural = 'خدمات'
+        verbose_name = "حدمت"
+        verbose_name_plural = "خدمات"
 
 
 class Rules(SingletonModel):
@@ -101,5 +97,5 @@ class Rules(SingletonModel):
         return self.title
 
     class Meta:
-        verbose_name = 'قوانین'
-        verbose_name_plural = 'قوانین'
+        verbose_name = "قوانین"
+        verbose_name_plural = "قوانین"

@@ -514,7 +514,7 @@ small {
 
     .fly-form {
         padding-top: 10px !important;
-        height: 370px !important;
+        height: 415px !important;
         flex-direction: column;
         justify-content: flex-start;
         align-items: center;
@@ -703,7 +703,7 @@ small {
 
     .fly-form {
         padding-top: 10px !important;
-        height: 370px !important;
+        height: 420px !important;
         flex-direction: column;
         justify-content: flex-start;
         align-items: center;
@@ -846,7 +846,7 @@ small {
     }
 
     .fly-form {
-        height: 200px !important;
+        height: 240px !important;
     }
 
     .fly-form * {
@@ -1077,7 +1077,7 @@ small {
     }
 
     .fly-form {
-        height: 210px !important;
+        height: 240px !important;
     }
 
     .btnSearch {

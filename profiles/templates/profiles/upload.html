@@ -1,85 +1,106 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block style %}
-<link rel="stylesheet" href="{% static "css/otherstyle.css" %}">
+<link rel="stylesheet" href="{% static "css/passengers.css" %}">
 <link rel="stylesheet" href="{% static "css/common.css" %}">
 <link rel="stylesheet" href="{% static "css/bootstrap.rtl.min.css" %}">
 <link rel="stylesheet" href="{% static "css/animate.css" %}">
 <link rel="stylesheet" href="{% static "css/owl.carousel.min.css" %}">
+<link rel="stylesheet" href="{% static "css/persian-datepicker.min.css" %}">
 <title>تعویض رمز عبور</title>
 {% endblock style %}
 
 {% block content %}
+
+
+<style>
+    table.GeneratedTable {
+        width: 100%;
+        background-color: #ffffff;
+        border-collapse: collapse;
+        border-width: 2px;
+        border-color: #c2c2c2;
+        border-style: solid;
+        color: #000000;
+    }
+
+    table.GeneratedTable td, table.GeneratedTable th {
+        border-width: 2px;
+        border-color: #c2c2c2;
+        border-style: solid;
+        padding: 3px;
+    }
+
+    table.GeneratedTable thead {
+        background-color: #852193;
+    }
+</style>
+
+
 <main>
+
+
+
     <h4 class="my-5"></h4>
     <section class="sign-in py-5">
-        <div>
-            <div class="sign-in-section d-flex flex-column align-items-center justify-content-CENTER px-5">
-                <form class="w-100" method="post" action="">
-                    {% csrf_token %}
-                    <div class="input-group inputGP rounded-3 mx-2 my-3">
-                  <span class="input-group-text inputGPText text-secondary"><svg xmlns="http://www.w3.org/2000/svg"
-                                                                                 width="16" height="16"
-                                                                                 fill="currentColor"
-                                                                                 style="color: #A281B0;"
-                                                                                 class="bi bi-people-fill me-1"
-                                                                                 viewBox="0 0 16 16">
-                    <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
-                    <path fill-rule="evenodd"
-                          d="M5.216 14A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216z"/>
-                    <path d="M4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"/>
-                  </svg>
-                     {{ form.title.label }}
-                  </span>
-                        {{ form.title }}
+            <section class="information mb-3 p-4 col-12">
+        <div class="d-flex align-items-start">
+            <svg class="bi bi-people-fill" fill="currentColor" height="30" viewBox="0 0 16 16"
+                 width="30" xmlns="http://www.w3.org/2000/svg">
+                <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                <path d="M5.216 14A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216z"
+                      fill-rule="evenodd"/>
+                <path d="M4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"/>
+            </svg>
+            <h4 class="ms-2 mt-1 fw-bold">مشخصات مسافران</h4>
+        </div>
+        <div id="file">
+            <form class="file_wrapper" action="" method="post" name="myform" enctype="multipart/form-data">
+                {%csrf_token%}
+                  <select aria-label="Default select example" class="form-select mx-2" name="madrak[]"  id="madrak">
+                        <option selected>نوع مدرک</option>
+                        <option value="کارت ملی">کارت ملی</option>
+                        <option value="شناسنامه">شناسنامه</option>
+                        <option value="پاسپورت">پاسپورت</option>
+                        <option value="سایر مدارک">سایر مدارک</option>
+                    </select>
+                <div class="d-flex w-100 justify-content-between align-items-center">
+                    <div class="input-group birth-date rounded-3 w-50 ms-2">
+                    <input class="form-control" name="description[]" placeholder="توضیحات" type="text" id="description">
+                    </div><div class="input-group birth-date rounded-3 w-50 ms-2">
+                        <input id="image" type="file" name= "image[]" class="form-control">
                     </div>
-                    <div class="input-group inputGP rounded-3 mx-2 my-3">
-                  <span class="input-group-text inputGPText text-secondary"><svg xmlns="http://www.w3.org/2000/svg"
-                                                                                 width="16" height="16"
-                                                                                 fill="currentColor"
-                                                                                 style="color: #A281B0;"
-                                                                                 class="bi bi-people-fill me-1"
-                                                                                 viewBox="0 0 16 16">
-                    <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
-                    <path fill-rule="evenodd"
-                          d="M5.216 14A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216z"/>
-                    <path d="M4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"/>
-                  </svg>
-                     {{ form.image.label }}
-                  </span>
-                        {{ form.image }}
-                    </div>
-                    <div class="input-group inputGP rounded-3 mx-2 my-3">
-                  <span class="input-group-text inputGPText text-secondary"><svg xmlns="http://www.w3.org/2000/svg"
-                                                                                 width="16" height="16"
-                                                                                 fill="currentColor"
-                                                                                 style="color: #A281B0;"
-                                                                                 class="bi bi-people-fill me-1"
-                                                                                 viewBox="0 0 16 16">
-                    <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
-                    <path fill-rule="evenodd"
-                          d="M5.216 14A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216z"/>
-                    <path d="M4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"/>
-                  </svg>
-                     {{ form.description.label }}
-                  </span>
-                        {{ form.description }}
-                    </div>
+                </div>
+                </div>
+
+            </form>
+            <hr>
+        </div>
+        <button class="btn btn-outline-primary" id="addNewfile" type="button">افزودن مدرک جدید</button>
+    </section>
 
 
-                    <div class="btnGP mt-5 d-flex flex-column justify-content-center align-items-center">
-                        <div class="my-1 d-flex justify-content-center align-items-center">
-                            <button type="submit" class="btn p-2 rounded-3 mx-1"
-                                    style="background-color: #852193; color: white;">به روزسانی پروفایل<img
-                                    src="{% static 'icons/chevron-left.svg' %}" height="16" width="16" alt=""></button>
+    </section>
 
-                        </div>
-
-                    </div>
-                </form>
+    <section class="rules-submit mb-3 col-12 p-4 d-flex justify-content-between align-items-center">
+        <div></div>
+        <div class="d-flex justify-content-center align-items-end">
+            <div class="text-primary me-2 d-flex align-items-center">
             </div>
+            <button data-url="{% url 'user_pro:test' %}" id="finalSubmit1" class="btn ms-2 fw-bold btn-primary">
+                ارسال مدارک
+            </button>
         </div>
     </section>
+
+
+
+
+
+
+
+
+
 
     <section class="features px-5 py-5 my-5">
         <div class="icon-features d-flex flex-column align-items-center justify-content-end px-5"

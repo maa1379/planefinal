@@ -10,8 +10,8 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
-from pathlib import Path
 import os
+from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,18 +20,18 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-a%b7(7*f-)3p^9l(uzkj$ic-32)bd9=0)24te70@4l07(2jgv+'
+SECRET_KEY = "django-insecure-a%b7(7*f-)3p^9l(uzkj$ic-32)bd9=0)24te70@4l07(2jgv+"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ["*"]
 
 # Application definition
 
 INSTALLED_APPS = [
-    'adminlte3',
-    'adminlte3_theme',
+    "adminlte3",
+    "adminlte3_theme",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -52,7 +52,8 @@ INSTALLED_APPS = [
     "widget_tweaks",
     "django_extensions",
     "braces",
-    "azbankgateways"
+    # 'storages',
+    # "azbankgateways",
 ]
 
 MIDDLEWARE = [
@@ -65,7 +66,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-ROOT_URLCONF = 'myproject.urls'
+ROOT_URLCONF = "myproject.urls"
 
 TEMPLATES = [
     {
@@ -78,26 +79,25 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
-
                 # local
-                'core.context_processors.access_setting',
+                "core.context_processors.access_setting",
             ],
         },
     },
 ]
-WSGI_APPLICATION = 'myproject.wsgi.application'
+WSGI_APPLICATION = "myproject.wsgi.application"
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'mydb',
-        'USER': 'admin',
-        'PASSWORD': '123456789',
-        'HOST': 'localhost',
-        'PORT': '3306',
+    "default": {
+        "ENGINE": "django.db.backends.mysql",
+        "NAME": "mydb",
+        "USER": "admin",
+        "PASSWORD": "@0937Maa5733",
+        "HOST": "localhost",
+        "PORT": "3306",
     }
 }
 
@@ -106,23 +106,23 @@ DATABASES = {
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
     },
 ]
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = "en-us"
 
 TIME_ZONE = "UTC"
 
@@ -143,55 +143,68 @@ MEDIA_URL = "/media/"
 STATIC_ROOT = BASE_DIR / "static_cdn" / "media"
 
 # Default primary key field type
+# Default primary key field type
+# Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 AUTH_USER_MODEL = "accounts.User"
 LANGUAGE_CODE = "en-us"
 
-AZ_IRANIAN_BANK_GATEWAYS = {
-    "GATEWAYS": {
-        "BMI": {
-            "MERCHANT_CODE": "<YOUR MERCHANT CODE>",
-            "TERMINAL_CODE": "<YOUR TERMINAL CODE>",
-            "SECRET_KEY": "<YOUR SECRET CODE>",
-        },
-        "SEP": {
-            "MERCHANT_CODE": "<YOUR MERCHANT CODE>",
-            "TERMINAL_CODE": "<YOUR TERMINAL CODE>",
-        },
-        "ZARINPAL": {
-            "MERCHANT_CODE": "<YOUR MERCHANT CODE>",
-        },
-        "IDPAY": {
-            "MERCHANT_CODE": "<YOUR MERCHANT CODE>",
-            "METHOD": "POST",  # GET or POST
-            "X_SANDBOX": 0,  # 0 disable, 1 active
-        },
-        "ZIBAL": {
-            "MERCHANT_CODE": "<YOUR MERCHANT CODE>",
-        },
-        "BAHAMTA": {
-            "MERCHANT_CODE": "<YOUR MERCHANT CODE>",
-        },
-        "MELLAT": {
-            "TERMINAL_CODE": "<YOUR TERMINAL CODE>",
-            "USERNAME": "<YOUR USERNAME>",
-            "PASSWORD": "<YOUR PASSWORD>",
-        },
-    },
-    "IS_SAMPLE_FORM_ENABLE": True,  # ??????? ? ??? ??? ??? ???? ???
-    "DEFAULT": "BMI",
-    "CURRENCY": "IRR",  # ???????
-    "TRACKING_CODE_QUERY_PARAM": "tc",  # ???????
-    "TRACKING_CODE_LENGTH": 16,  # ???????
-    "SETTING_VALUE_READER_CLASS": "azbankgateways.readers.DefaultReader",  # ???????
-    "BANK_PRIORITIES": [
-        "BMI",
-        "SEP",
-        # and so on ...
-    ],  # ???????
+# AZ_IRANIAN_BANK_GATEWAYS = {
+#     "GATEWAYS": {
+#         "BMI": {
+#             "MERCHANT_CODE": "<YOUR MERCHANT CODE>",
+#             "TERMINAL_CODE": "<YOUR TERMINAL CODE>",
+#             "SECRET_KEY": "<YOUR SECRET CODE>",
+#         },
+#         "SEP": {
+#             "MERCHANT_CODE": "<YOUR MERCHANT CODE>",
+#             "TERMINAL_CODE": "<YOUR TERMINAL CODE>",
+#         },
+#         "ZARINPAL": {
+#             "MERCHANT_CODE": "<YOUR MERCHANT CODE>",
+#         },
+#         "IDPAY": {
+#             "MERCHANT_CODE": "<YOUR MERCHANT CODE>",
+#             "METHOD": "POST",  # GET or POST
+#             "X_SANDBOX": 0,  # 0 disable, 1 active
+#         },
+#         "ZIBAL": {
+#             "MERCHANT_CODE": "<YOUR MERCHANT CODE>",
+#         },
+#         "BAHAMTA": {
+#             "MERCHANT_CODE": "<YOUR MERCHANT CODE>",
+#         },
+#         "MELLAT": {
+#             "TERMINAL_CODE": "<YOUR TERMINAL CODE>",
+#             "USERNAME": "<YOUR USERNAME>",
+#             "PASSWORD": "<YOUR PASSWORD>",
+#         },
+#     },
+#     "IS_SAMPLE_FORM_ENABLE": True,  # ??????? ? ??? ??? ??? ???? ???
+#     "DEFAULT": "BMI",
+#     "CURRENCY": "IRR",  # ???????
+#     "TRACKING_CODE_QUERY_PARAM": "tc",  # ???????
+#     "TRACKING_CODE_LENGTH": 16,  # ???????
+#     "SETTING_VALUE_READER_CLASS": "azbankgateways.readers.DefaultReader",  # ???????
+#     "BANK_PRIORITIES": [
+#         "BMI",
+#         "SEP",
+#         # and so on ...
+#     ],  # ???????
+# }
+
+
+DEFAULT_FILE_STORAGE = 'storages.backends.sftpstorage.SFTPStorage'
+
+SFTP_STORAGE_HOST = '30.30.30.1'
+SFTP_STORAGE_ROOT = 'online/'
+SFTP_STORAGE_PARAMS = {
+    'username': 'administrator',
+    'password': 'Siami@1399',
+    'allow_agent': False,
+    'look_for_keys': False,
 }
-
-
-
+# SFTP_KNOWN_HOST_FILE = '~/.ssh/known_hosts'
+SFTP_STORAGE_INTERACTIVE = False

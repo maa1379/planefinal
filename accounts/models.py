@@ -24,7 +24,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     objects = MyUserManager()
 
     # def __str__(self):
-        # return self.phone_number
+    # return self.phone_number
 
     @property
     def is_staff(self):

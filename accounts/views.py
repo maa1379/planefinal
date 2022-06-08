@@ -9,7 +9,7 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.http import Http404
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, FormView, UpdateView, View
+from django.views.generic import CreateView, FormView, UpdateView, View, ListView
 
 from .forms import (
     LoginForm,
@@ -88,7 +88,7 @@ class UserLoginView(View):
 class UserLogoutView(LoginRequiredMixin, View):
     def get(self, request):
         logout(request)
-        messages.success(request, "", "success")
+        messages.success(request, "با موفقیت از  حساب حود خارح شدید", "success")
         return redirect("accounts:login")
 
 
@@ -97,20 +97,21 @@ class UserRegisterView(AnonymousRequiredMixin, View):
 
     def post(self, request):
         form = self.form_class(request.POST)
-        print(form.errors)
         if form.is_valid():
             random_code = random.randint(1000, 9999)
             send_otp(form.cleaned_data["phone_number"], random_code)
             OtpCode.objects.create(
                 phone_number=form.cleaned_data["phone_number"], code=random_code
             )
-
             request.session["user_registration_info"] = {
                 "phone_number": form.cleaned_data["phone_number"],
                 "password": form.cleaned_data["password"],
             }
             messages.success(request, "کد برای شما ارسال شد", "success")
             return redirect("accounts:verify")
+        else:
+            messages.error(request,'کاربر با این شماره تلقن قبلا ثبت نام کرده')
+            return redirect('accounts:login')
 
 
 class UserRegisterVerifyCodeView(AnonymousRequiredMixin, View):
@@ -130,7 +131,9 @@ class UserRegisterVerifyCodeView(AnonymousRequiredMixin, View):
 
     def post(self, request):
         user_session = request.session["user_registration_info"]
-        code_instance = OtpCode.objects.filter(phone_number=user_session["phone_number"]).last()
+        code_instance = OtpCode.objects.filter(
+            phone_number=user_session["phone_number"]
+        ).last()
         form = self.form_class(request.POST)
         print(form.errors)
         print(form.cleaned_data)
@@ -157,6 +160,7 @@ class UserRegisterVerifyCodeView(AnonymousRequiredMixin, View):
 class UserDashboard(LoginRequiredMixin, View):
     def get(self, request):
         user_obj = get_object_or_404(user, id=request.user.id)
+        
         return render(request, "accounts/dashboard.html", {"user": user_obj})
 
 
@@ -179,4 +183,6 @@ class UserPassChangeView(SuccessMessageMixin, PasswordChangeView):
     def form_invalid(self, form):
         print(form.errors)
         return super(UserPassChangeView, self).form_invalid(form)
+
+
 

@@ -1,0 +1,97 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+        <title>صفحه موردنظر شما پیدا نشد</title>
+        <meta charset="utf-8"/>
+        <meta name=viewport content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+        <div class="p4p-container">
+            <div class="p4p-text-layer">
+                <h1><span>404</span>اوپس! این صفحه پیدا نشد.</h1>
+                <p>ولی کلی صفحه ی دیگه داریم که وجود داره و میتونی ببینی</p>
+                <div class="p4p-row">
+                    <a href="#">خانه اصلی</a>
+                    <input type="text" placeholder="جستجو"/>
+                </div>
+            </div>
+            <div class="p4p-scene-wrapper">
+                <ul id="p4p-scene">
+                    <li class="layer" data-depth="1"></li>
+                    <li class="layer" data-depth="0.9"></li>
+                    <li class="layer" data-depth="0.8"></li>
+                    <li class="layer" data-depth="0.65"></li>
+                    <li class="layer" data-depth="0.50"></li>
+                    <li class="layer" data-depth="0.35"></li>
+                    <li class="layer" data-depth="0.20"></li>
+                    <li class="layer" data-depth="0"></li>
+                </ul>
+            </div>
+        </div>
+
+        <svg id="p4p-filled-hexagon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid" width="647" height="559.969" viewBox="0 0 647 559.969">
+        <defs>
+            <style>
+              .cls-1 {
+                filter: url(#drop-shadow-1);
+              }
+            </style>
+
+            <filter id="drop-shadow-1" filterUnits="userSpaceOnUse">
+              <feOffset in="SourceAlpha"/>
+              <feGaussianBlur stdDeviation="30" result="dropBlur"/>
+              <feFlood flood-opacity="0.2"/>
+              <feComposite operator="in" in2="dropBlur" result="dropShadowComp"/>
+              <feComposite in="SourceGraphic" result="shadowed"/>
+            </filter>
+          </defs>
+            <path d="M647.001,279.692 L485.507,559.678 L162.007,559.974 L0.001,280.284 L161.494,0.298 L484.994,0.003 L647.001,279.692 Z" class="cls-1"/>
+        </svg>
+        <svg id="p4p-stroked-hexagon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid" width="654.969" height="567" viewBox="0 0 654.969 567">
+            <path d="M166.511,564.158 L1.990,282.666 L163.453,2.008 L489.437,2.842 L653.958,284.334 L492.495,564.992 L166.511,564.158 Z"/>
+        </svg>
+
+        <link rel="stylesheet" href="{% static 'err/' %}css/hexagons-light.min.css" />
+        <script src="{% static 'err/' %}js/parallax.min.js" type="781c2c83acef60a6aa96b14b-text/javascript"></script>
+        <script src="{% static 'err/' %}js/hexagons-light.min.js" type="781c2c83acef60a6aa96b14b-text/javascript"></script>
+
+        <!-- strip-code -->
+        <div id="customize-panel">
+            <div class="cog"></div>
+        </div>
+        <link rel="stylesheet" href="{% static 'err/' %}demo/flexi-color-picker.css" />
+        <link rel="stylesheet" href="{% static 'err/' %}demo/customizer.css" />
+            <link rel="stylesheet" href="{% static 'err/' %}css/fonts.css" />
+
+        <script src="{% static 'err/' %}js/jquery-2.2.4.min.js" type="781c2c83acef60a6aa96b14b-text/javascript"></script>
+        <script src="{% static 'err/' %}demo/flexi-color-picker.min.js" type="781c2c83acef60a6aa96b14b-text/javascript"></script>
+        <script src="{% static 'err/' %}demo/customizer.js" type="781c2c83acef60a6aa96b14b-text/javascript"></script>
+        <script type="781c2c83acef60a6aa96b14b-text/javascript">
+            Customizer.addControl('brand_color','نام برند','#ff5859');
+            Customizer.addControl('text_color','رنگ متن','#2c3e50');
+            Customizer.addControl('background_color','رنگ پشت‌زمینه','#fff');
+
+            Customizer.bindSetting('brand_color','.p4p-text-layer a','background-color');
+            Customizer.bindSetting('brand_color','.p4p-text-layer input','color');
+            Customizer.bindSetting('brand_color','.p4p-text-layer input','border-color');
+            Customizer.bindSetting('brand_color','.p4p-text-layer input::-webkit-input-placeholder','color');
+            Customizer.bindSetting('brand_color','.p4p-text-layer input:-moz-placeholder','color');
+            Customizer.bindSetting('brand_color','.p4p-text-layer input::-moz-placeholder','color');
+            Customizer.bindSetting('brand_color','.p4p-text-layer input:-ms-input-placeholder','color');
+            Customizer.bindSetting('brand_color','#p4p-filled-hexagon','fill');
+            Customizer.bindSetting('brand_color','#p4p-stroked-hexagon','stroke');
+            Customizer.bindSetting('text_color','.p4p-text-layer','color');
+            Customizer.bindSetting('background_color','body','background-color');
+            Customizer.bindSetting('background_color','.p4p-text-layer a','color');
+
+            Customizer.init();
+        </script>
+        <!-- end-strip-code -->
+    <script src="../{% static 'err/' %}js/rocket-loader.min.js" data-cf-settings="781c2c83acef60a6aa96b14b-|49" defer=""></script></body>
+
+</html>
+
+
+

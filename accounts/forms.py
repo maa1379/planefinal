@@ -24,9 +24,7 @@ class CreationForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = (
-            "phone_number",
-        )
+        fields = ("phone_number",)
 
     def clean(self):
         clean_data = super(CreationForm, self).clean()
@@ -77,9 +75,7 @@ class RegisterForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = (
-            "phone_number",
-        )
+        fields = ("phone_number",)
         widgets = {
             "phone_number": forms.TextInput(
                 attrs={

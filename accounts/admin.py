@@ -1,9 +1,10 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 
+from profiles.models import Profile, UserDocument
+
 from .forms import ChangeForm, CreationForm
 from .models import OtpCode, User
-from profiles.models import Profile, UserDocument
 
 
 class ProfileInLine(admin.StackedInline):
@@ -27,11 +28,7 @@ class UserAdmin(BaseUserAdmin):
     fieldsets = (
         (
             "اطلاعات اصلی",
-            {
-                "fields": (
-                    "phone_number",
-                )
-            },
+            {"fields": ("phone_number",)},
         ),
         (
             "دسترسی ها",

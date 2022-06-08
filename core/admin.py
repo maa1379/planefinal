@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import SiteSetting, AboutUs, ContactUs, Service, Rules
+from .models import AboutUs, ContactUs, Rules, Service, SiteSetting
 
 admin.site.register(SiteSetting)
 admin.site.register(AboutUs)

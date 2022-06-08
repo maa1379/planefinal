@@ -6,32 +6,34 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('accounts', '0001_initial'),
+        ("accounts", "0001_initial"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='user',
-            name='email',
+            model_name="user",
+            name="email",
         ),
         migrations.RemoveField(
-            model_name='user',
-            name='first_name',
+            model_name="user",
+            name="first_name",
         ),
         migrations.RemoveField(
-            model_name='user',
-            name='last_name',
+            model_name="user",
+            name="last_name",
         ),
         migrations.RemoveField(
-            model_name='user',
-            name='user_name',
+            model_name="user",
+            name="user_name",
         ),
         migrations.AlterField(
-            model_name='user',
-            name='phone_number',
-            field=models.CharField(max_length=11, unique=True, verbose_name='شماره تلفن'),
+            model_name="user",
+            name="phone_number",
+            field=models.CharField(
+                max_length=11, unique=True, verbose_name="شماره تلفن"
+            ),
         ),
         migrations.DeleteModel(
-            name='UserDocument',
+            name="UserDocument",
         ),
     ]
