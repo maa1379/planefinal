@@ -9,17 +9,21 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.http import Http404
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, FormView, UpdateView, View, ListView
+from django.views.generic import (CreateView, FormView, ListView, UpdateView,
+                                  View)
 
-from .forms import (
-    LoginForm,
-    PassChangeForm,
-    RegisterForm,
-    UserUpdateForm,
-    VerifyCodeForm,
-)
+from .forms import (LoginForm, PassChangeForm, RegisterForm, UserUpdateForm,
+                    VerifyCodeForm)
 from .models import OtpCode
 from .uitils import send_otp
+
+# from pyad import *
+
+# pyad.set_defaults(ldap_server="IT-LHQ-DC1.LIFEALIKE.LAB", username='administrator@7bluesky.org', password="Siami@1399")
+#
+# ou = pyad.adcontainer.ADContainer.from_dn("ou=All_Users, dc=LIFEALIKE, dc=LAB")
+
+
 
 # Create your views here.
 user = get_user_model()
@@ -135,19 +139,15 @@ class UserRegisterVerifyCodeView(AnonymousRequiredMixin, View):
             phone_number=user_session["phone_number"]
         ).last()
         form = self.form_class(request.POST)
-        print(form.errors)
-        print(form.cleaned_data)
         if form.is_valid():
-            print(form.errors)
             cd = form.cleaned_data
-            print(cd)
-            print(code_instance.code)
             if cd["code"] == code_instance.code:
                 user_obj = user.objects.create_user(
                     phone_number=user_session["phone_number"],
                     password=user_session["password"],
                 )
                 login(request, user_obj)
+                new_user = pyad.aduser.ADUser.create(user_obj.phone_number, ou, password=form.cleaned_data['password'])
                 code_instance.delete()
                 messages.success(request, "you registered.", "success")
                 return redirect("accounts:dashboard")

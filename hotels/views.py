@@ -17,6 +17,8 @@ class HotelView(View):
         )
 
 from django.http import JsonResponse
+
+
 class CitiesView(View):
     def get(self, request):
         get_data = requests.get(

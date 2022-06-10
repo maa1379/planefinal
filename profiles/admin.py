@@ -1,5 +1,6 @@
 from django.contrib import admin
-from .models import Profile, UserDocument,Image_Doc
+
+from .models import Image_Doc, Profile, UserDocument
 
 # Register your models here.
 admin.site.register(Profile)

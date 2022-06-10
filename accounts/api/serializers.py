@@ -1,82 +1,40 @@
-from django.contrib.auth import get_user_model
 from rest_framework import serializers
+from profiles.models import Profile
 
-user = get_user_model()
+
+class LoginSerializer(serializers.Serializer):
+    phone_number = serializers.CharField(max_length=255)
+    password = serializers.CharField(max_length=128)
 
 
-class RegisterSerializer(serializers.ModelSerializer):
-    password = serializers.CharField(style={"input_type": "password"}, write_only=True)
-    password_confirm = serializers.CharField(
-        style={"input_type": "password"}, write_only=True
-    )
+class PasswordChangeSerializer(serializers.Serializer):
+    old_password = serializers.CharField(max_length=128)
+    new_password = serializers.CharField(max_length=128)
 
+
+class UserUpdateSerializer(serializers.ModelSerializer):
     class Meta:
-        model = user
-        fields = (
-            "username",
-            "first_name",
-            "last_name",
-            "email",
-            "phone_number",
-            "password",
-            "password_confirm",
-        )
-        extra_kwargs = {
-            "password": {"write_only": True},
-        }
-
-    def validate(self, attrs):
-        if attrs["password"] != attrs["password_confirm"]:
-            raise serializers.ValidationError(
-                {"password": "Password fields didn't match."}
-            )
-
-        return attrs
+        model = Profile
+        fields = ['first_name', 'last_name', 'email', 'birthday']
 
 
-class ChangePasswordSerializer(serializers.ModelSerializer):
-    password = serializers.CharField(
-        write_only=True, required=True, validators=[validate_password]
-    )
-    password2 = serializers.CharField(write_only=True, required=True)
-    old_password = serializers.CharField(write_only=True, required=True)
-
-    class Meta:
-        model = User
-        fields = ("old_password", "password", "password2")
-
-    def validate(self, attrs):
-        if attrs["password"] != attrs["password2"]:
-            raise serializers.ValidationError(
-                {"password": "Password fields didn't match."}
-            )
-
-        return attrs
-
-    def validate_old_password(self, value):
-        user = self.context["request"].user
-        if not user.check_password(value):
-            raise serializers.ValidationError(
-                {"old_password": "Old password is not correct"}
-            )
-        return value
-
-    def update(self, instance, validated_data):
-
-        instance.set_password(validated_data["password"])
-        instance.save()
-
-        return instance
+class RegisterUserSerializer(serializers.Serializer):
+    phone_number = serializers.CharField(max_length=12, required=True)
+    password = serializers.CharField(max_length=15, required=True)
 
 
-from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+class RegisterVerifiedSerializer(serializers.Serializer):
+    code = serializers.CharField(max_length=5)
+    phone_number = serializers.CharField(max_length=12)
+    password = serializers.CharField(max_length=12)
 
 
-class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
-    @classmethod
-    def get_token(cls, user):
-        token = super(MyTokenObtainPairSerializer, cls).get_token(user)
 
-        # Add custom claims
-        token["phone_number"] = user.phone_number
-        return token
+class PasswordResetSerializer(serializers.Serializer):
+	phone_number = serializers.EmailField(max_length=60)
+
+
+class PasswordResetVerifiedSerializer(serializers.Serializer):
+	code = serializers.CharField(max_length=100)
+	phone_number = serializers.EmailField(max_length=60)
+	new_password = serializers.CharField(max_length=128)

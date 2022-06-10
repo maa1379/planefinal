@@ -1,14 +1,10 @@
-from django.urls import path
+from django.urls import include, path
 
-from .views import (
-    UserDashboard,
-    UserLoginView,
-    UserLogoutView,
-    UserPassChangeView,
-    UserRegisterVerifyCodeView,
-    UserRegisterView,
-    UserUpdateView,
-)
+from accounts.api.urls import urlpatterns
+
+from .views import (UserDashboard, UserLoginView, UserLogoutView,
+                    UserPassChangeView, UserRegisterVerifyCodeView,
+                    UserRegisterView, UserUpdateView)
 
 app_name = "accounts"
 urlpatterns = [
@@ -19,4 +15,5 @@ urlpatterns = [
     path("profile/", UserDashboard.as_view(), name="dashboard"),
     path("pass_change/", UserPassChangeView.as_view(), name="pass_change"),
     path("update/<int:pk>/", UserUpdateView.as_view(), name="update"),
+    path('api/', include(urlpatterns)),
 ]

@@ -1,5 +1,6 @@
 import json
 from copy import copy
+
 import requests
 from django.shortcuts import get_object_or_404, render
 from django.views.generic import View
@@ -39,9 +40,9 @@ class SearchListView(View):
                         'airline_id': airline.id,
                         'origin_city_name': city_name.get(i["Origin"]),
                         'airline_name': airline.name,
-                        'DepartureTime': i["DepartureDateTime"][11:],
+                        'DepartureTime': i["DepartureDateTime"][11:16],
                         'destination_city_name': city_name.get(i["Destination"]),
-                        'ArrivalTime': i["ArrivalDateTime"][11:],
+                        'ArrivalTime': i["ArrivalDateTime"][11:16],
                         'persian_date': i["DepartureDateTime"][:10],
                     }
                     if "C" in str(add["class"]):

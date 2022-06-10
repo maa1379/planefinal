@@ -1,13 +1,7 @@
 from django.urls import path
 
-from .views import (
-    CancelTicketView,
-    PassengerView,
-    TripInfoView,
-    cities,
-    go_to_gateway_view,
-    home,
-)
+from .views import (CancelTicketView, PassengerView, TripInfoView, cities,
+                    go_to_gateway_view, home)
 
 app_name = "passengers"
 urlpatterns = [

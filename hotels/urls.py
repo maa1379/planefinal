@@ -1,6 +1,8 @@
-from django.urls import path
+from django.urls import include, path
 
-from .views import HotelRoomsView, HotelSearchView, HotelView,CitiesView
+from hotels.api.urls import urlpatterns
+
+from .views import CitiesView, HotelRoomsView, HotelSearchView, HotelView
 
 app_name = "hotel"
 urlpatterns = [
@@ -8,4 +10,5 @@ urlpatterns = [
     path("search/", HotelSearchView.as_view(), name="search"),
     path("rooms/<int:city_id>/", HotelRoomsView.as_view(), name="rooms"),
     path('cities/',CitiesView.as_view(),name='city_list'),
+    path('api/', include(urlpatterns)),
 ]

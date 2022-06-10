@@ -47,7 +47,7 @@ def get_image_path(instance, filename):
 
 
 class Image_Doc(models.Model):
-    file = models.ImageField(upload_to=get_image_path)
+    file = models.ImageField(upload_to='')
 
 
 class UserDocument(TimeStampedModel):

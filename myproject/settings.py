@@ -52,6 +52,8 @@ INSTALLED_APPS = [
     "widget_tweaks",
     "django_extensions",
     "braces",
+    "rest_framework",
+    'rest_framework.authtoken',
     # 'storages',
     # "azbankgateways",
 ]
@@ -196,15 +198,54 @@ LANGUAGE_CODE = "en-us"
 # }
 
 
-DEFAULT_FILE_STORAGE = 'storages.backends.sftpstorage.SFTPStorage'
+# DEFAULT_FILE_STORAGE = 'storages.backends.sftpstorage.SFTPStorage'
+#
+# SFTP_STORAGE_HOST = '30.30.30.1'
+# SFTP_STORAGE_ROOT = 'online/'
+# SFTP_STORAGE_PARAMS = {
+#     'username': 'administrator',
+#     'password': 'Siami@1399',
+#     'allow_agent': False,
+#     'look_for_keys': False,
+# }
+# # SFTP_KNOWN_HOST_FILE = '~/.ssh/known_hosts'
+# SFTP_STORAGE_INTERACTIVE = False
 
-SFTP_STORAGE_HOST = '30.30.30.1'
-SFTP_STORAGE_ROOT = 'online/'
-SFTP_STORAGE_PARAMS = {
-    'username': 'administrator',
-    'password': 'Siami@1399',
-    'allow_agent': False,
-    'look_for_keys': False,
+
+# Django Logging Information
+LOGGING = {
+    # Define the logging version
+    'version': 1,
+    # Enable the existing loggers
+    'disable_existing_loggers': False,
+
+    # Define the handlers
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': 'djangoapp.log',
+        },
+
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+
+    # Define the loggers
+    'loggers': {
+        'django': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+            'propagate': True,
+
+        },
+    },
 }
-# SFTP_KNOWN_HOST_FILE = '~/.ssh/known_hosts'
-SFTP_STORAGE_INTERACTIVE = False
+
+REST_FRAMEWORK = {
+   'DEFAULT_AUTHENTICATION_CLASSES': (
+       'rest_framework.authentication.TokenAuthentication',
+   ),
+    # 'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema' ,
+}

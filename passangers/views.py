@@ -12,10 +12,6 @@ from django.contrib import messages
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
-
-# from django.views.generic import View
-#
-
 #
 #
 # # Create your views here.
@@ -46,6 +42,12 @@ from airlines.models import Airline
 from passangers.models import Passenger
 
 from .models import Passenger, Reservation
+
+# from django.views.generic import View
+#
+
+
+
 
 
 def home(request):

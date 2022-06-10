@@ -248,7 +248,9 @@ if (document.getElementById('addNewPassenger')) {
     }
 }
 
-
+// document.getElementById('travelSrc').onchange(){
+//        console.log(document.getElementById(travelSrc));
+// }
 if (document.getElementsByClassName('side-tab').length > 0) {
     setTimeout(() => {
         console.log($(".side-tab a:nth-child(1)").click())
@@ -263,7 +265,7 @@ if (document.getElementById('travelSrc')) {
                 const options = [];
                 for (const item in res) {
                     if (res.hasOwnProperty(item)) {
-                        options.push(`<option value="${item}">${res[item]}</option>`)
+                        options.push(`<option value="${item}" >${res[item]}</option>`)
                     }
                 }
                 document.getElementById('travelSrc').innerHTML = options.join('');
@@ -273,6 +275,8 @@ if (document.getElementById('travelSrc')) {
         })
     }, 200)
 }
+
+
 $('.select2').select2({
     placeholder: 'لطفا یک مورد را انتخاب کنید',
     width: "100%",
@@ -282,6 +286,7 @@ $("#destination").select2({
     width: "100%",
 
 })
+
 $("#fly-area-submit").click(function (e) {
     e.preventDefault();
     let goDate = $("#goDate").val();
